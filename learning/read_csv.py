@@ -1,5 +1,6 @@
 import csv
 
+'''
 temps = []  # Liste zur Speicherung der Temperaturen
 
 with open("learning/temps.csv", newline="") as file:
@@ -15,3 +16,41 @@ with open("learning/temps.csv", newline="") as file:
     # float() → CSV ist Text, wir brauchen Zahlen
 
 print(max(temps))  # Ausgabe der maximalen Temperatur
+'''
+
+def read_temps_from_csv(path):
+    temps = []
+
+    try:
+        with open(path, newline="") as file:
+            reader = csv.DictReader(file)
+            for row in reader:
+                temps.append(float(row["temp"]))
+    except FileNotFoundError:
+        print("Datei nicht gefunden:", path)
+    except ValueError:
+        print("Ungültiger Zahlenwert in CSV")
+
+    return temps
+
+'''
+Was hier passiert
+	•	path abstrahiert die Datenquelle
+	•	Funktion gibt Daten, nicht Output zurück
+	•	Wiederverwendbar für andere CSVs
+    •	Fehler = erwarteter Zustand
+	•	Programm stürzt nicht ab
+	•	Kontrolle bleibt beim Entwickler
+'''
+
+def main():
+    temps = read_temps_from_csv("learning/temps.csv")
+
+    if not temps:
+        print("Keine Daten vorhanden")
+        return
+
+    print("Max temp:", max(temps))
+
+
+main()
