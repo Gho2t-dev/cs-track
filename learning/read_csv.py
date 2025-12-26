@@ -53,4 +53,4 @@ def main():
     print("Max temp:", max(temps))
 
 
-main()
+main()  # Hauptprogramm startet hier
