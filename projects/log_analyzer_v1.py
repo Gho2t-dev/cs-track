@@ -6,46 +6,34 @@ def read_records(path: str) -> list[dict]:
     Returns: list of {"time": str, "temp": float}
     """
     records: list[dict] = []
-
-    # TODO: open file safely (with open)
-    with open(path, newline='') as file:
-
-    # TODO: use csv.DictReader
-        reader = csv.DictReader(file)
-
-    # TODO: append dicts with parsed float
-        for row in reader:
-            record = {
-                "time": row["time"],
-                "temp": float(row["temp"])
-            }
-            records.append(record)
-    # TODO: handle errors:
-    #   - FileNotFoundError -> print message, return []
-    if FileNotFoundError:
-        print(f"File not found: {path}")
-        return []
-    #   - KeyError (missing column) -> print message, return []
-    if KeyError:
-        print(f"Missing column in CSV file: {path}")
-        return []
-    #   - ValueError (bad number) -> print message, return []
-    if ValueError:
-        print(f"Invalid Value in CSV file: {path}")
-        return []
-    return records
+    # TODO FileNotFoundError, KeyError und ValueError handling
+    try:
+        with open(path, newline='') as file:
+            reader = csv.DictReader(file)
+            for row in reader:
+                record = {
+                   "time": row["time"],
+                   "temp": float(row["temp"])
+                }
+                records.append(record)
+        return records
+        print("File succesfully read")
+    except FileNotFoundError:
+        print(f"File in path: {path} not found.")
+    except KeyError:
+        print(f"Mapping key not found")
+    except ValueError:
+        print(f"Value Error for file in path: {path}")
 
 def calc_stats(temps: list[float]) -> dict:
-    """
-    Returns dict with: count, min, avg, max, range
-    """
+    
     # TODO: if temps is empty -> return {}
     if not temps:
         return {}
-    return {}
+    return
 
 def main() -> None:
-    path = "learning/temps.csv"
+    path = "/Users/fabian/Documents/cs-track/learning/temps.csv"
 
     records = read_records(path)
     if not records:
