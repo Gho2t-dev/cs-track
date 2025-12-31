@@ -95,12 +95,13 @@ result = findSecondMaxValue(numbers)
 print(f"The second largest number in the list is: {result}.") 
 '''
 
+'''
 # Level 10 Frequency counter, zählen wie oft jedes element vorkommt
 
 nums = [2, 2, 8, 10, 3, 7, 7, 7]
 
-# TODO Input nimmt liste und wandelt alle zahlen in eine dict
-# Idee: Prüfen ob die Zahl schon im dict ist, wenn ja dann count +1 und wenn nein dann neuen index erstellen
+# TODO Input nimmt liste und wandelt alle zahlen in eine counts
+# Idee: Prüfen ob die Zahl schon im counts ist, wenn ja dann count +1 und wenn nein dann neuen index erstellen
 
 def FreqCounter(nums):
     FreqDict = {}
@@ -126,3 +127,60 @@ result = FreqCounter(nums)
 maxCount = MostFrequent(result)
 print(result)
 print(maxCount)
+'''
+'''
+#Level 11 texts zählen 
+
+text = "hello world"
+
+def CharCounter(text):
+    counts = {}
+    for i in text:
+        if i in counts:
+            counts[i] = counts[i] + 1
+        else:
+            counts[i] = 1
+    return counts
+
+result = CharCounter(text)
+print(result)
+'''
+
+'''
+#Level 12: Wörter Zählen
+
+text = "hello world hello python world"
+
+def wordCounter(text):
+    words = text.split()
+    counts = {}
+    for word in words:
+        if word in counts:
+            counts[word] = counts[word] + 1
+        else:
+            counts[word] = 1
+    return counts
+
+result = wordCounter(text)
+print(result)
+'''
+
+# Level 13: Datei lesen -> Wörter zählen
+
+def wordCounterFromFile(path):
+    counts = {}
+    # Read File
+    with open(path) as f:
+        text = f.read()
+    # text -> wörter umwandeln
+    words = text.split()
+    # Zählen
+    for word in words:
+        if word in counts:
+            counts[word] = counts[word] + 1
+        else:
+            counts[word] = 1
+    return counts
+
+result = wordCounterFromFile("learning/text.txt")
+print(result)
