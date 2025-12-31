@@ -100,7 +100,7 @@ print(f"The second largest number in the list is: {result}.")
 
 nums = [2, 2, 8, 10, 3, 7, 7, 7]
 
-# TODO Input nimmt liste und wandelt alle zahlen in eine counts
+# Input nimmt liste und wandelt alle zahlen in eine counts
 # Idee: Prüfen ob die Zahl schon im counts ist, wenn ja dann count +1 und wenn nein dann neuen index erstellen
 
 def FreqCounter(nums):
