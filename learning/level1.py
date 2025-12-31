@@ -197,11 +197,45 @@ def wordCounterFromFile(path):
 result = wordCounterFromFile("learning/text.txt")
 print(result)
 
-# test cases :
+#   --- Test Cases ---
 # Fall 1: Leeres file
-# Fall 2: 1 wort
-# Fall 3: gleiche wörter
-# Fall 4: Gross kleinschreibung
-# Fall 5: zahlen
-# Fall 6: Satzzeichen
+result = wordCounter("")
+expected = {}
 
+if result != expected:
+    print("FAIL", result, expected)
+
+# Fall 2: 1 wort
+result = wordCounter("hello")
+expected = {"hello": 1}
+
+if result != expected:
+    print("FAIL", result, expected)
+
+# Fall 3: gleiche wörter
+result = wordCounter("python python")
+expected = {"python": 2}
+
+if result != expected:
+    print("FAIL", result, expected)
+
+# Fall 4: Gross kleinschreibung
+result = wordCounter("PyThOn")
+expected = {"python": 1}
+
+if result != expected:
+    print("FAIL", result, expected)
+
+# Fall 5: zahlen
+result = wordCounter("12")
+expected = {"12": 1}
+
+if result != expected:
+    print("FAIL", result, expected)
+
+# Fall 6: Satzzeichen
+result = wordCounter("yeah!!!")
+expected = {"yeah": 1}
+
+if result != expected:
+    print("FAIL", result, expected)
