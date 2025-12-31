@@ -167,11 +167,8 @@ print(result)
 
 # Level 13: Datei lesen -> Wörter zählen
 
-def wordCounterFromFile(path):
-    counts = {}
-    # Read File
-    with open(path) as f:
-        text = f.read()
+def wordCounter(text):
+    counts = {}    
     # text -> wörter umwandeln
     words = text.split()
     # Zählen
@@ -182,5 +179,29 @@ def wordCounterFromFile(path):
             counts[word] = 1
     return counts
 
+def wordCounterFromFile(path):
+    # Read File
+    try:
+        with open(path) as f:
+            text = f.read()
+    except FileNotFoundError:
+        print(f"Error file in path: {path} not found.")
+        return {}
+    # Normalisieren (normalisieren und replace von satzzeichen)
+    ch = ['.', ',', '!', '?']
+    for i in ch:
+        text = text.replace(i, "")
+    text = text.lower()
+    return wordCounter(text)
+    
 result = wordCounterFromFile("learning/text.txt")
 print(result)
+
+# test cases :
+# Fall 1: Leeres file
+# Fall 2: 1 wort
+# Fall 3: gleiche wörter
+# Fall 4: Gross kleinschreibung
+# Fall 5: zahlen
+# Fall 6: Satzzeichen
+

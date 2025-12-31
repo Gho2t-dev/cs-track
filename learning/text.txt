@@ -1,4 +1,4 @@
-hello world
-hello python
-world world
-crazy python world
+hello world!
+Hello python
+world world?
+crazy, python world
