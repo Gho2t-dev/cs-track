@@ -24,7 +24,7 @@ def read_file(path):
 # normalize text (set lowercase and remove dots, commas, etc)
 def normalize(text):
     # list of characters to check for removing
-    chars = ['.', ',', '!', '?']
+    chars = ['.', ',', '!', '?', '(', ')', '–']
     # set text to lowercase
     text = text.lower()
     # check if each character from character list is present and remove
@@ -53,7 +53,7 @@ if text == "":
     exit()
 
 text_norm = normalize(text)
-word_counts = count_words(text)
+word_counts = count_words(text_norm)  # dict: word -> frequency
 wordlist = text_norm.split()
 total_words = len(wordlist)
 unique_words = len(word_counts)
@@ -63,21 +63,33 @@ count = 0
 top1_count = 0
 top2_count = 0
 top3_count = 0
+top1_word = ""
+top2_word = ""
+top3_word = ""
 for word in word_counts:
     count = word_counts[word]
     if count > top1_count:
+        top3_word = top2_word
         top3_count = top2_count
+        top2_word = top1_word
         top2_count = top1_count
+        top1_word = word
         top1_count = count
     elif count > top2_count:
+        top3_word = top2_word
         top3_count = top2_count
+        top2_word = word
         top2_count = count
     elif count > top3_count:
+        top3_word = word
         top3_count = count
 
-top1_word =
-top2_word =
-top3_word =
-
+print("--------------------------------")
 print(f"Total words: {total_words}")
 print(f"Unique words: {unique_words}")
+print("--------------------------------")
+print("Top 3:")
+print("1)", top1_word, top1_count)
+print("2)", top2_word, top2_count)
+print("3)", top3_word, top3_count)
+print("--------------------------------")
