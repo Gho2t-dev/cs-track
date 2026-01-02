@@ -53,6 +53,31 @@ if text == "":
     exit()
 
 text_norm = normalize(text)
-total_words = 0
-for word in text:
-    total_words = total_words + 1
+word_counts = count_words(text)
+wordlist = text_norm.split()
+total_words = len(wordlist)
+unique_words = len(word_counts)
+
+# get top 3 words
+count = 0
+top1_count = 0
+top2_count = 0
+top3_count = 0
+for word in word_counts:
+    count = word_counts[word]
+    if count > top1_count:
+        top3_count = top2_count
+        top2_count = top1_count
+        top1_count = count
+    elif count > top2_count:
+        top3_count = top2_count
+        top2_count = count
+    elif count > top3_count:
+        top3_count = count
+
+top1_word =
+top2_word =
+top3_word =
+
+print(f"Total words: {total_words}")
+print(f"Unique words: {unique_words}")
