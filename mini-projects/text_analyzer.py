@@ -1,4 +1,4 @@
-# This is my first small project after learning basic python scripting
+# This is my first small project after learning basic python.
 # The purpose of this script is to analyze a given .txt file and return key values of said file
 # giving the following output: 
 # 
@@ -46,3 +46,13 @@ def count_words(text):
             words[word] = 1
     return words
 
+path = input("please specify the path of the file to be analyzed: ")
+
+text = read_file(path)
+if text == "":
+    exit()
+
+text_norm = normalize(text)
+total_words = 0
+for word in text:
+    total_words = total_words + 1
